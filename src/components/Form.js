@@ -170,7 +170,7 @@ const Form = () => {
     'Sequencing of Meeting',
     'Q & A Session',
     'E-voting Facility',
-    'Streaming of Proceedings',
+    'Live Streaming of Proceedings',
     'Facilty to submit queries during Meeting'
   ];
 
@@ -285,7 +285,7 @@ const Form = () => {
   /* Table 9 contents rules - start */
   const parameterRows8 = [
     '',
-    'If yes, Please provide a brief summary of the grievance:'
+    'If yes, please provide a brief summary of the grievance:'
   ];
   const initialState8 = {
     Yes: Array(parameterRows8.length).fill(false),
@@ -718,7 +718,7 @@ const Form = () => {
 
           <div className="w-full md:w-1/2 pr-16">
             <label className={`pr-6 py-4 ${formErrors.stakeholderName ? 'text-red-500' : ''}`}>
-              Name of the stakeholder:
+              Name of the shareholder:
               <span className="text-red-500">*</span>
             </label>
             <input
@@ -848,7 +848,7 @@ const Form = () => {
         {/* <div className="hidden sm:block"> */}
 
         {/* Table 1 */}
-        <p className='font-bold py-6 px-0'>1. HOW DO YOU RATE WEBSITE OF THE COMPANY ?</p>
+        <p className='font-bold py-6 px-0'>1. HOW DO YOU RATE WEBSITE OF THE COMPANY?</p>
         <div className="overflow-x-auto px-26">
           <table className="table-auto min-w-full">
             <thead>
@@ -1033,7 +1033,7 @@ const Form = () => {
         {/* Table 3 */}
         {/* Table 4 */}
         <p className="font-bold py-4 px-2">
-          Did you attend the shareholders’ meeting of the company through VC/OVAM?
+          Did you attend the Shareholders’ Meeting of the Company through VC/OVAM?
         </p>
         <div className="flex items-center gap-4 px-2">
           <label>
