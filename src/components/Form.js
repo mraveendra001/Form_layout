@@ -469,79 +469,59 @@ const Form = () => {
 
     // Validate the form
     if (validateForm()) {
+      const missingRows = [];
 
-      // Add responses from Table 1
+      // Table 1
       const selectedOptions = {};
       parameterRows.forEach((param, index) => {
-
         const selectedOption = Object.keys(checkboxes).find(
           (key) => checkboxes[key][index]
         );
         if (selectedOption) {
           selectedOptions[`var${index + 1}`] = selectedOption;
-
+        } else {
+          missingRows.push(`Row ${index + 1} of Table 1`);
         }
-        else {
-          alert(`Please fill out at least one checkbox in the ${index + 1} row of Table 1.`);
-        }
-
       });
       const var11 = selectedOptions['var1'] || 0;
       const var12 = selectedOptions['var2'] || 0;
       const var13 = selectedOptions['var3'] || 0;
 
-
-
+      // Table 2
       const selectedOptions1 = {};
-      // Add responses from Table 2
-      // message += "2. INVESTOR RELATIONS SECTION ON THE WEBSITE OF THE BANK";
       parameterRows1.forEach((param1, index1) => {
         const selectedOption1 = Object.keys(checkboxes1).find(
           (key1) => checkboxes1[key1][index1]
         );
         if (selectedOption1) {
-          // message += `${selectedOption1}`;
           selectedOptions1[`var${index1 + 1}`] = selectedOption1;
-        }
-        else {
-          alert(`Please fill out at least one checkbox in the ${index1 + 1} row of Table 2.`);
+        } else {
+          missingRows.push(`Row ${index1 + 1} of Table 2`);
         }
       });
-
       const var21 = selectedOptions1['var1'] || 0;
       const var22 = selectedOptions1['var2'] || 0;
       const var23 = selectedOptions1['var3'] || 0;
 
-
-
-      // Add responses from Table 3
+      // Table 3
       const selectedOptions2 = {};
-      //message +=
-      //"3.SERVICES PROVIDED BY KFIN TECHNOLOGIES LIMITED, OUR REGISTRAR & SHARE TRANSFER AGENTS";
       parameterRows2.forEach((param2, index2) => {
         const selectedOption2 = Object.keys(checkboxes2).find(
           (key2) => checkboxes2[key2][index2]
         );
         if (selectedOption2) {
           selectedOptions2[`var${index2 + 1}`] = selectedOption2;
-        }
-        else {
-          alert(`Please fill out at least one checkbox in the ${index2 + 1} row of Table 3.`);
+        } else {
+          missingRows.push(`Row ${index2 + 1} of Table 3`);
         }
       });
       const var31 = selectedOptions2['var1'] || 0;
       const var32 = selectedOptions2['var2'] || 0;
       const var33 = selectedOptions2['var3'] || 0;
 
-      if (!attendedMeeting) {
-        alert("Please select 'Yes' or 'No' for attending the shareholders' meeting.");
-        return;
-      }
-
-      let var41 = 0, var42 = 0, var43 = 0; // Initialize defaults
-
+      // Table 4 (only if 'attendedMeeting' is 'yes')
+      let var41 = 0, var42 = 0, var43 = 0; // Default values
       if (attendedMeeting === 'yes') {
-        // Add responses from Table 4
         const selectedOptions3 = {};
         parameterRows3.forEach((param3, index3) => {
           const selectedOption3 = Object.keys(checkboxes3).find(
@@ -550,201 +530,180 @@ const Form = () => {
           if (selectedOption3) {
             selectedOptions3[`var${index3 + 1}`] = selectedOption3;
           } else {
-            alert(`Please fill out at least one checkbox in the ${index3 + 1} row of Table 4.`);
+            missingRows.push(`Row ${index3 + 1} of Table 4`);
           }
         });
-
-        // Assign values based on selections
         var41 = selectedOptions3['var1'] || 0;
         var42 = selectedOptions3['var2'] || 0;
         var43 = selectedOptions3['var3'] || 0;
       }
 
-      // Add responses from Table 5
+      // Table 5
       const selectedOptions4 = {};
-
       parameterRows4.forEach((param4, index4) => {
         const selectedOption4 = Object.keys(checkboxes4).find(
           (key4) => checkboxes4[key4][index4]
         );
         if (selectedOption4) {
           selectedOptions4[`var${index4 + 1}`] = selectedOption4;
-        }
-        else {
-          alert(`Please fill out at least one checkbox in the ${index4 + 1} row of Table 5.`);
+        } else {
+          missingRows.push(`Row ${index4 + 1} of Table 5`);
         }
       });
       const var51 = selectedOptions4['var1'] || 0;
       const var52 = selectedOptions4['var2'] || 0;
       const var53 = selectedOptions4['var3'] || 0;
 
-
-      // Add responses from Table 6
+      // Table 6
       const selectedOptions5 = {};
-
       parameterRows5.forEach((param5, index5) => {
         const selectedOption5 = Object.keys(checkboxes5).find(
           (key5) => checkboxes5[key5][index5]
         );
         if (selectedOption5) {
           selectedOptions5[`var${index5 + 1}`] = selectedOption5;
-        }
-        else {
-          alert(`Please fill out at least one checkbox in the ${index5 + 1} row of Table 6.`);
+        } else {
+          missingRows.push(`Row ${index5 + 1} of Table 6`);
         }
       });
       const var61 = selectedOptions5['var1'] || 0;
       const var62 = selectedOptions5['var2'] || 0;
       const var63 = selectedOptions5['var3'] || 0;
 
-
-      // Add responses from Table 7
+      // Table 7
       const selectedOptions6 = {};
-
       parameterRows6.forEach((param6, index6) => {
         const selectedOption6 = Object.keys(checkboxes6).find(
           (key6) => checkboxes6[key6][index6]
         );
         if (selectedOption6) {
           selectedOptions6[`var${index6 + 1}`] = selectedOption6;
-        }
-        else {
-          alert(`Please fill out at least one checkbox in the ${index6 + 1} row of Table 7.`);
+        } else {
+          missingRows.push(`Row ${index6 + 1} of Table 7`);
         }
       });
       const var71 = selectedOptions6['var1'] || 0;
       const var72 = selectedOptions6['var2'] || 0;
       const var73 = selectedOptions6['var3'] || 0;
 
-      // Add responses from Table 8
+      // Table 8
       const selectedOptions7 = {};
-
       parameterRows7.forEach((param7, index7) => {
         const selectedOption7 = Object.keys(checkboxes7).find(
           (key7) => checkboxes7[key7][index7]
         );
         if (selectedOption7) {
           selectedOptions7[`var${index7 + 1}`] = selectedOption7;
-        }
-        else {
-          alert(`Please fill out at least one checkbox in the ${index7 + 1} row of Table 8.`);
+        } else {
+          missingRows.push(`Row ${index7 + 1} of Table 8`);
         }
       });
       const var81 = selectedOptions7['var1'] || 0;
       const var82 = selectedOptions7['var2'] || 0;
       const var83 = selectedOptions7['var3'] || 0;
-      //table 9 - text area grivence one
+
+      // Table 9 (text area)
       const selectedOptions8 = {};
       let var92;
       parameterRows8.forEach((param8, index8) => {
         if (index8 === 1) {
-          // Handle the textarea value
           var92 = ` ${textArea}`;
         } else {
           const selectedOption8 = Object.keys(checkboxes8).find(
             (key8) => checkboxes8[key8][index8]
           );
           if (selectedOption8) {
-            //message += `${param5}: ${selectedOption5}`;
             selectedOptions8[`var${index8 + 1}`] = selectedOption8;
-          }
-          else {
-            alert(`Please fill out at least one checkbox in the ${index8 + 1} row of Table 9.`);
+          } else {
+            missingRows.push(`Row ${index8 + 1} of Table 9`);
           }
         }
       });
       const var91 = selectedOptions8['var1'] || 0;
 
-      var myHeaders = new Headers();
+      // Validate that var92 (Remarks) is not empty
+      if (!var92 || var92.trim() === "") {
+        missingRows.push("Remarks must be filled out.");
+      }
+
+      // Check if any rows are missing and display an alert
+      if (missingRows.length > 0) {
+        alert(`Please fill out the following rows before submitting:\n\n${missingRows.join("\n")}`);
+        return;
+      }
+
+      // Validate 'attendedMeeting'
+      if (!attendedMeeting) {
+        alert("Please select 'Yes' or 'No' for attending the shareholders' meeting.");
+        return;
+      }
+
+      // Prepare the form data for submission
+      const myHeaders = new Headers();
       myHeaders.append("X-Cleartax-Auth-Token", "5e750eb7-ba46-467c-a8ba-42401dab5c20");
       myHeaders.append("Content-Type", "application/json");
 
-      // Assuming formData is already defined and contains the form data
-      console.log("Form Data:", formData); // Log the entire form data
-      if (formData.customerPhone > 1 && formData.customerPhone.length < 10) {
-        alert("Customer phone number must be at least 10 digits.");
-      }
-      else {
-        var customerPhone = formData.customerPhone || ''
-        var raw = JSON.stringify({
-          NameOfShareHolder: formData.stakeholderName,
-          EmailID: formData.emailId,
-          FolioNoClientID: folio,
-          MobileNumber: customerPhone,
-          SrNo11: var11,
-          SrNo12: var12,
-          SrNo13: var13,
-          SrNo21: var21,
-          SrNo22: var22,
-          SrNo23: var23,
-          SrNo31: var31,
-          SrNo32: var32,
-          SrNo33: var33,
-          SrNo41: var41,
-          SrNo42: var42,
-          SrNo43: var43,
-          SrNo51: var51,
-          SrNo52: var52,
-          SrNo53: var53,
-          SrNo61: var61,
-          SrNo62: var62,
-          SrNo63: var63,
-          SrNo71: var71,
-          SrNo72: var72,
-          SrNo73: var73,
-          SrNo81: var81,
-          SrNo82: var82,
-          SrNo83: var83,
-          SrNo91: var91,
-          Remarks: var92
-        });
+      const customerPhone = formData.customerPhone || '';
+      const raw = JSON.stringify({
+        NameOfShareHolder: formData.stakeholderName,
+        EmailID: formData.emailId,
+        FolioNoClientID: folio,
+        MobileNumber: customerPhone,
+        SrNo11: var11,
+        SrNo12: var12,
+        SrNo13: var13,
+        SrNo21: var21,
+        SrNo22: var22,
+        SrNo23: var23,
+        SrNo31: var31,
+        SrNo32: var32,
+        SrNo33: var33,
+        SrNo41: var41,
+        SrNo42: var42,
+        SrNo43: var43,
+        SrNo51: var51,
+        SrNo52: var52,
+        SrNo53: var53,
+        SrNo61: var61,
+        SrNo62: var62,
+        SrNo63: var63,
+        SrNo71: var71,
+        SrNo72: var72,
+        SrNo73: var73,
+        SrNo81: var81,
+        SrNo82: var82,
+        SrNo83: var83,
+        SrNo91: var91,
+        Remarks: var92
+      });
 
-        // Log the raw object before it's stringified and sent
-        //  console.log("Form Data and Variables to be sent:", raw);
-        // Log everything
-        // console.log("Final Payload Sent to the Server:");
-        // console.log("Raw JSON Data:", raw);
-        // console.log("Complete Form Data:", formData);
-        // console.log("Collected Variables:", {
-        //   var11, var12, var13, var21, var22, var23,
-        //   var31, var32, var33, var41, var42, var43,
-        //   var51, var52, var53, var61, var62, var63,
-        //   var71, var72, var73, var81, var82, var83,
-        //   var91, Remarks: var92,
-        // });
+      // Log the raw object before it's stringified and sent
+      console.log("Form Data and Variables to be sent:", raw);
 
-        //Delay navigation for visibility of logs
-        //   setTimeout(() => {
-        //   window.location.href = "/thank-you";
-        //}, 1000);
+      const requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw,
+        redirect: 'follow'
+      };
 
+      fetch("https://Live.jfsl.in/Survey_Api/api/API/SurveyDetails", requestOptions)
+        .then(response => response.json())
+        .then(result => {
+          console.log(result);
 
-
-        var requestOptions = {
-          method: 'POST',
-          headers: myHeaders,
-          body: raw,
-          redirect: 'follow'
-        };
-
-
-
-        fetch("https://Live.jfsl.in/Survey_Api/api/API/SurveyDetails", requestOptions)
-          .then(response => response.json())
-          .then(result => {
-            console.log(result);
-
-            if (result.Result === 1) {
-              // Change the URL to the thank you page
-              window.location.href = '/thank-you';
-            }
-            if (result.Result === 3) {
-              alert("FolioNo/DPID  Is Already Registerd");
-            }
-          })
-          .catch(error => console.log('error', error));
-      }
+          if (result.Result === 1) {
+            // Redirect to the thank you page if successful
+            window.location.href = '/thank-you';
+          }
+          if (result.Result === 3) {
+            alert("FolioNo/DPID is already registered");
+          }
+        })
+        .catch(error => console.log('error', error));
     }
+
+
 
   };
 
