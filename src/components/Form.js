@@ -73,12 +73,10 @@ const Form = () => {
 
   /*table 1 contents rules - start*/
   const parameterRows = [
-    'Shareholder Communication',
-    'Annual Report',
-    'Newspapers / Press Release',
-    'Company’s Website',
-    'Investor Presentation',
-    'E-mails'
+    'Quality of Information',
+    'Relevance and adequancy of information',
+    'Ease & accessibility while navigating',
+    'Sustainability Webpage and ESG related information'
   ];
 
   const initialState = {
@@ -90,76 +88,41 @@ const Form = () => {
   };
 
 
-  // const [checkboxes, setCheckboxes] = useState(initialState); /*table 1*/
-  // const handleCheckboxChange = (paramIndex, option) => {
-  //   const updatedCheckboxes = { ...checkboxes };
-  //   for (const key in updatedCheckboxes) {
-  //     updatedCheckboxes[key][paramIndex] = key === option;
-
-  //   }
-  //   setCheckboxes(updatedCheckboxes);
-  // alert(option);
-
   const [checkboxes, setCheckboxes] = useState(initialState); /*table 1*/
-  const handleOptionChange = (paramIndex, option, type) => {
-    if (type === 'checkbox') {
-      const updatedCheckboxes = { ...checkboxes };
-      for (const key in updatedCheckboxes) {
-        updatedCheckboxes[key][paramIndex] = key === option;
-      }
-      setCheckboxes(updatedCheckboxes);
-    } else if (type === 'radio') {
-      const updatedCheckboxes = { ...checkboxes };
-      for (const key in updatedCheckboxes) {
-        updatedCheckboxes[key] = updatedCheckboxes[key].map((_, index) =>
-          index === paramIndex ? key === option : false
-        );
-      }
-      setCheckboxes(updatedCheckboxes);
+  const handleCheckboxChange = (paramIndex, option) => {
+    const updatedCheckboxes = { ...checkboxes };
+    for (const key in updatedCheckboxes) {
+      updatedCheckboxes[key][paramIndex] = key === option;
+
     }
+    setCheckboxes(updatedCheckboxes);
+    // alert(option);
+
+    // const [checkboxes, setCheckboxes] = useState(initialState); /*table 1*/
+    // const handleOptionChange = (paramIndex, option, type) => {
+    //   if (type === 'checkbox') {
+    //     const updatedCheckboxes = { ...checkboxes };
+    //     for (const key in updatedCheckboxes) {
+    //       updatedCheckboxes[key][paramIndex] = key === option;
+    //   }
+    //   setCheckboxes(updatedCheckboxes);
+    // } else if (type === 'radio') {
+    //   const updatedCheckboxes = { ...checkboxes };
+    //   for (const key in updatedCheckboxes) {
+    //     updatedCheckboxes[key] = updatedCheckboxes[key].map((_, index) =>
+    //       index === paramIndex ? key === option : false
+    //     );
+    //   }
+    //   setCheckboxes(updatedCheckboxes);
+    // }
   };
-
-
-  //   const [checkboxes, setCheckboxes] = useState(initialState);
-  // const [radioButtons, setRadioButtons] = useState(initialState); // Initialize with the same initial state
-
-  // const handleCheckboxChange = (paramIndex, option) => {
-  //   setCheckboxes((prevState) => {
-  //     const updatedCheckboxes = { ...prevState };
-  //     for (const key in updatedCheckboxes) {
-  //       updatedCheckboxes[key][paramIndex] = key === option;
-  //     }
-  //     return updatedCheckboxes;
-  //   });
-  // };
-
-  // const handleRadioButtonChange = (paramIndex, option) => {
-  //   setRadioButtons((prevState) => {
-  //     const updatedRadioButtons = { ...prevState };
-
-  //     // Reset all radio buttons for the current parameter
-  //     for (const key in updatedRadioButtons) {
-  //       updatedRadioButtons[key][paramIndex] = false;
-  //     }
-
-  //     // Set the selected radio button for the current parameter
-  //     updatedRadioButtons[option][paramIndex] = true;
-
-  //     return updatedRadioButtons;
-  //   });
-  // };
-
-
-
 
 
   /*table 1 contents rules - end*/
   /*table 2 contents rules - start*/
   const parameterRows1 = [
-    'Quality of Information',
-    'Relevance and adequancy of information',
-    'Ease & accessibility while navigating',
-    'Sustainability Webpage and ESG related information'
+    'Dividend / ECS Intimation',
+    'General Notice / Updates'
   ];
   const initialState1 = {
     excellent: Array(parameterRows1.length).fill(false),
@@ -179,9 +142,12 @@ const Form = () => {
   /*table 2 contents rules - end*/
   /*table 3 contents rules - start*/
   const parameterRows2 = [
-    'Dividend / ECS Intimation',
-    'General Notice / Updates'
-
+    'Shareholder Communication',
+    'Annual Report',
+    'Newspapers / Press Release',
+    'Company’s Website',
+    'Investor Presentation',
+    'E-mails'
   ];
   const initialState2 = {
     excellent: Array(parameterRows2.length).fill(false),
@@ -515,6 +481,9 @@ const Form = () => {
           selectedOptions[`var${index + 1}`] = selectedOption;
 
         }
+        else {
+          alert(`Please fill out at least one checkbox in the ${index + 1} row of Table 1.`);
+        }
 
       });
       const var11 = selectedOptions['var1'] || 0;
@@ -533,6 +502,9 @@ const Form = () => {
         if (selectedOption1) {
           // message += `${selectedOption1}`;
           selectedOptions1[`var${index1 + 1}`] = selectedOption1;
+        }
+        else {
+          alert(`Please fill out at least one checkbox in the ${index1 + 1} row of Table 2.`);
         }
       });
 
@@ -553,26 +525,40 @@ const Form = () => {
         if (selectedOption2) {
           selectedOptions2[`var${index2 + 1}`] = selectedOption2;
         }
+        else {
+          alert(`Please fill out at least one checkbox in the ${index2 + 1} row of Table 3.`);
+        }
       });
       const var31 = selectedOptions2['var1'] || 0;
       const var32 = selectedOptions2['var2'] || 0;
       const var33 = selectedOptions2['var3'] || 0;
 
+      if (!attendedMeeting) {
+        alert("Please select 'Yes' or 'No' for attending the shareholders' meeting.");
+        return;
+      }
 
-      // Add responses from Table 4
-      const selectedOptions3 = {};
-      // message += "4. HOW DO YOU RATE THE RECEIPT OF VARIOUS DOCUMENTS\n";
-      parameterRows3.forEach((param3, index3) => {
-        const selectedOption3 = Object.keys(checkboxes3).find(
-          (key3) => checkboxes3[key3][index3]
-        );
-        if (selectedOption3) {
-          selectedOptions3[`var${index3 + 1}`] = selectedOption3;
-        }
-      });
-      const var41 = selectedOptions3['var1'] || 0;
-      const var42 = selectedOptions3['var2'] || 0;
-      const var43 = selectedOptions3['var3'] || 0;
+      let var41 = 0, var42 = 0, var43 = 0; // Initialize defaults
+
+      if (attendedMeeting === 'yes') {
+        // Add responses from Table 4
+        const selectedOptions3 = {};
+        parameterRows3.forEach((param3, index3) => {
+          const selectedOption3 = Object.keys(checkboxes3).find(
+            (key3) => checkboxes3[key3][index3]
+          );
+          if (selectedOption3) {
+            selectedOptions3[`var${index3 + 1}`] = selectedOption3;
+          } else {
+            alert(`Please fill out at least one checkbox in the ${index3 + 1} row of Table 4.`);
+          }
+        });
+
+        // Assign values based on selections
+        var41 = selectedOptions3['var1'] || 0;
+        var42 = selectedOptions3['var2'] || 0;
+        var43 = selectedOptions3['var3'] || 0;
+      }
 
       // Add responses from Table 5
       const selectedOptions4 = {};
@@ -583,6 +569,9 @@ const Form = () => {
         );
         if (selectedOption4) {
           selectedOptions4[`var${index4 + 1}`] = selectedOption4;
+        }
+        else {
+          alert(`Please fill out at least one checkbox in the ${index4 + 1} row of Table 5.`);
         }
       });
       const var51 = selectedOptions4['var1'] || 0;
@@ -600,6 +589,9 @@ const Form = () => {
         if (selectedOption5) {
           selectedOptions5[`var${index5 + 1}`] = selectedOption5;
         }
+        else {
+          alert(`Please fill out at least one checkbox in the ${index5 + 1} row of Table 6.`);
+        }
       });
       const var61 = selectedOptions5['var1'] || 0;
       const var62 = selectedOptions5['var2'] || 0;
@@ -616,6 +608,9 @@ const Form = () => {
         if (selectedOption6) {
           selectedOptions6[`var${index6 + 1}`] = selectedOption6;
         }
+        else {
+          alert(`Please fill out at least one checkbox in the ${index6 + 1} row of Table 7.`);
+        }
       });
       const var71 = selectedOptions6['var1'] || 0;
       const var72 = selectedOptions6['var2'] || 0;
@@ -630,6 +625,9 @@ const Form = () => {
         );
         if (selectedOption7) {
           selectedOptions7[`var${index7 + 1}`] = selectedOption7;
+        }
+        else {
+          alert(`Please fill out at least one checkbox in the ${index7 + 1} row of Table 8.`);
         }
       });
       const var81 = selectedOptions7['var1'] || 0;
@@ -649,6 +647,9 @@ const Form = () => {
           if (selectedOption8) {
             //message += `${param5}: ${selectedOption5}`;
             selectedOptions8[`var${index8 + 1}`] = selectedOption8;
+          }
+          else {
+            alert(`Please fill out at least one checkbox in the ${index8 + 1} row of Table 9.`);
           }
         }
       });
@@ -744,6 +745,7 @@ const Form = () => {
           .catch(error => console.log('error', error));
       }
     }
+
   };
 
 
@@ -886,8 +888,66 @@ const Form = () => {
         {/* Use responsive classes to show/hide table or radio buttons */}
         {/* <div className="hidden sm:block"> */}
 
-        {/* Table 2 */}
+        {/* Table 1 */}
         <p className='font-bold py-6 px-0'>1. HOW DO YOU RATE WEBSITE OF THE COMPANY ?</p>
+        <div className="overflow-x-auto px-26">
+          <table className="table-auto min-w-full">
+            <thead>
+              <tr>
+                <th className="px-4 py-2">Parameters</th>
+                <th className="px-4 py-2">Excellent</th>
+                <th className="px-4 py-2">Very Good</th>
+                <th className="px-4 py-2">Good</th>
+                <th className="px-4 py-2">Satisfactory</th>
+                <th className="px-4 py-2">Needs Improvement</th>
+              </tr>
+            </thead>
+            <tbody>
+              {parameterRows.map((param, index) => (
+                <tr key={index}>
+                  <td className="border px-4 py-2">{param}</td>
+                  <td className="border px-4 py-2">
+                    <input
+                      type="checkbox"
+                      checked={checkboxes.excellent[index]}
+                      onChange={() => handleCheckboxChange(index, 'excellent')}
+                    />
+                  </td>
+                  <td className="border px-4 py-2">
+                    <input
+                      type="checkbox"
+                      checked={checkboxes.veryGood[index]}
+                      onChange={() => handleCheckboxChange(index, 'veryGood')}
+                    />
+                  </td>
+                  <td className="border px-4 py-2">
+                    <input
+                      type="checkbox"
+                      checked={checkboxes.good[index]}
+                      onChange={() => handleCheckboxChange(index, 'good')}
+                    />
+                  </td>
+                  <td className="border px-4 py-2">
+                    <input
+                      type="checkbox"
+                      checked={checkboxes.satisfactory[index]}
+                      onChange={() => handleCheckboxChange(index, 'satisfactory')}
+                    />
+                  </td>
+                  <td className="border px-4 py-2">
+                    <input
+                      type="checkbox"
+                      checked={checkboxes.needsImprovement[index]}
+                      onChange={() => handleCheckboxChange(index, 'needsImprovement')}
+                    />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        {/*table 2*/}
+        <p className='font-bold py-6 px-2'>2.HOW DO YOU RATE THE RECEIPT OF VARIOUS INTIMATIONS FROM THE COMPANY?</p>
         <div className="overflow-x-auto px-26">
           <table className="table-auto min-w-full">
             <thead>
@@ -945,68 +1005,10 @@ const Form = () => {
           </table>
         </div>
 
-        <p className='font-bold py-6 px-2'>2.HOW DO YOU RATE THE RECEIPT OF VARIOUS INTIMATIONS FROM THE COMPANY?</p>
-        <div className="overflow-x-auto px-26">
-          <table className="table-auto min-w-full">
-            <thead>
-              <tr>
-                <th className="px-4 py-2">Parameters</th>
-                <th className="px-4 py-2">Excellent</th>
-                <th className="px-4 py-2">Very Good</th>
-                <th className="px-4 py-2">Good</th>
-                <th className="px-4 py-2">Satisfactory</th>
-                <th className="px-4 py-2">Needs Improvement</th>
-              </tr>
-            </thead>
-            <tbody>
-              {parameterRows2.map((param2, index2) => (
-                <tr key={index2}>
-                  <td className="border px-4 py-2">{param2}</td>
-                  <td className="border px-4 py-2">
-                    <input
-                      type="checkbox"
-                      checked={checkboxes2.excellent[index2]}
-                      onChange={() => handleCheckboxChange2(index2, 'excellent')}
-                    />
-                  </td>
-                  <td className="border px-4 py-2">
-                    <input
-                      type="checkbox"
-                      checked={checkboxes2.veryGood[index2]}
-                      onChange={() => handleCheckboxChange2(index2, 'veryGood')}
-                    />
-                  </td>
-                  <td className="border px-4 py-2">
-                    <input
-                      type="checkbox"
-                      checked={checkboxes2.good[index2]}
-                      onChange={() => handleCheckboxChange2(index2, 'good')}
-                    />
-                  </td>
-                  <td className="border px-4 py-2">
-                    <input
-                      type="checkbox"
-                      checked={checkboxes2.satisfactory[index2]}
-                      onChange={() => handleCheckboxChange2(index2, 'satisfactory')}
-                    />
-                  </td>
-                  <td className="border px-4 py-2">
-                    <input
-                      type="checkbox"
-                      checked={checkboxes2.needsImprovement[index2]}
-                      onChange={() => handleCheckboxChange2(index2, 'needsImprovement')}
-                    />
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
 
 
 
-
-        {/*Table 1 */}
+        {/*Table 3 */}
         <p className='font-bold py-6 px-0'>3. HOW DO YOU RATE DISSEMINATION OF INFORMATION ABOUT THE COMPANY BY WAY OF THE FOLLOWING?</p>
         <div className="overflow-x-auto px-26">
           <div>
@@ -1022,42 +1024,42 @@ const Form = () => {
                 </tr>
               </thead>
               <tbody>
-                {parameterRows.map((param, index) => (
-                  <tr key={index}>
-                    <td className="border px-4 py-2">{param}</td>
+                {parameterRows2.map((param2, index2) => (
+                  <tr key={index2}>
+                    <td className="border px-4 py-2">{param2}</td>
                     <td className="border px-4 py-2">
                       <input
                         type="checkbox"
-                        checked={checkboxes.excellent[index]}
-                        onChange={() => handleOptionChange(index, 'excellent', 'checkbox')}
+                        checked={checkboxes2.excellent[index2]}
+                        onChange={() => handleCheckboxChange2(index2, 'excellent', 'checkbox')}
                       />
                     </td>
                     <td className="border px-4 py-2">
                       <input
                         type="checkbox"
-                        checked={checkboxes.veryGood[index]}
-                        onChange={() => handleOptionChange(index, 'veryGood', 'checkbox')}
+                        checked={checkboxes2.veryGood[index2]}
+                        onChange={() => handleCheckboxChange2(index2, 'veryGood', 'checkbox')}
                       />
                     </td>
                     <td className="border px-4 py-2">
                       <input
                         type="checkbox"
-                        checked={checkboxes.good[index]}
-                        onChange={() => handleOptionChange(index, 'good', 'checkbox')}
+                        checked={checkboxes2.good[index2]}
+                        onChange={() => handleCheckboxChange2(index2, 'good', 'checkbox')}
                       />
                     </td>
                     <td className="border px-4 py-2">
                       <input
                         type="checkbox"
-                        checked={checkboxes.satisfactory[index]}
-                        onChange={() => handleOptionChange(index, 'satisfactory', 'checkbox')}
+                        checked={checkboxes2.satisfactory[index2]}
+                        onChange={() => handleCheckboxChange2(index2, 'satisfactory', 'checkbox')}
                       />
                     </td>
                     <td className="border px-4 py-2">
                       <input
                         type="checkbox"
-                        checked={checkboxes.needsImprovement[index]}
-                        onChange={() => handleOptionChange(index, 'needsImprovement', 'checkbox')}
+                        checked={checkboxes2.needsImprovement[index2]}
+                        onChange={() => handleCheckboxChange2(index2, 'needsImprovement', 'checkbox')}
                       />
                     </td>
                   </tr>
